@@ -29,7 +29,7 @@ export default function App() {
       </main>
 
       <footer className="footer">
-        © 2026 Narendran A · Built with React &amp; Vite
+        © 2026 Narendran D · Built with React &amp; Vite
       </footer>
     </>
   );

@@ -94,7 +94,7 @@ export default function Hero() {
           letterSpacing: "-0.02em",
         }}
       >
-        Narendran A
+        Narendran D
       </h1>
 
       <div

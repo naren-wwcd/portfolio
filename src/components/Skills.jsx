@@ -2,10 +2,12 @@ import { useFadeUp } from "../hooks/useFadeUp";
 import "../styles/portfolio.css";
 
 const SKILLS = [
-  { category: "Frontend",         items: ["React", "JavaScript", "HTML/CSS", "Tailwind"] },
-  { category: "Backend",          items: ["Spring Boot", "Java", "REST APIs", "MySQL"] },
-  { category: "DevOps & Linux",   items: ["Docker", "CI/CD", "Git", "Ansible", "Bash Scripting"] },
-  { category: "Certifications",   items: ["RHCSA Certified"] },
+  { category: "Languages",       items: ["Java", "Python", "C"] },
+  { category: "Frontend",        items: ["React", "HTML5", "CSS3", "JavaScript"] },
+  { category: "Backend & APIs",  items: ["Spring Boot", "REST APIs", "MySQL", "Postman", "MVC"] },
+  { category: "DevOps & Linux",  items: ["Docker", "Git", "GitHub", "Shell Scripting", "CI/CD"] },
+  { category: "CS Concepts",     items: ["DSA", "OOP", "DBMS", "OS", "Computer Networks"] },
+  { category: "Certifications",  items: ["RHCSA Certified"] },
 ];
 
 export default function Skills() {
@@ -25,11 +27,7 @@ export default function Skills() {
           style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: "1.25rem" }}
         >
           {SKILLS.map(({ category, items }) => (
-            <div
-              key={category}
-              className="card"
-              style={{ padding: "1.8rem" }}
-            >
+            <div key={category} className="card" style={{ padding: "1.8rem" }}>
               <div
                 style={{
                   fontFamily:    "var(--font-display)",

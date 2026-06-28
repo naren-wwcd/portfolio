@@ -2,15 +2,22 @@ import { useFadeUp } from "../hooks/useFadeUp";
 import "../styles/portfolio.css";
 
 const HIGHLIGHTS = [
-  { label: "RHCSA Certified",  sub: "Red Hat Certified System Administrator" },
-  { label: "Full Stack Dev",   sub: "React · Spring Boot · MySQL"            },
-  { label: "DevOps Mindset",   sub: "Docker · CI/CD · Linux Automation"      },
+  { label: "RHCSA Certified",       sub: "Red Hat Certified System Administrator" },
+  { label: "Full Stack Dev",        sub: "React · Spring Boot · MySQL"            },
+  { label: "DevOps Mindset",        sub: "Docker · CI/CD · Linux · Git"           },
+  { label: "Education",             sub: "B.E. CSE · Sri Sairam Institute · CGPA 8.44" },
+];
+
+const ACHIEVEMENTS = [
+  { icon: "⚡", text: "60+ problems solved on LeetCode — Arrays, Strings, Linked Lists" },
+  { icon: "🏆", text: "3rd Prize — Solveathon college-level hackathon" },
 ];
 
 export default function About() {
-  const refLabel = useFadeUp();
-  const refLeft  = useFadeUp();
-  const refRight = useFadeUp();
+  const refLabel  = useFadeUp();
+  const refLeft   = useFadeUp();
+  const refRight  = useFadeUp();
+  const refAch    = useFadeUp();
 
   return (
     <section id="about">
@@ -22,9 +29,10 @@ export default function About() {
             display:             "grid",
             gridTemplateColumns: "1fr 1fr",
             gap:                 "4rem",
-            alignItems:          "center",
+            alignItems:          "start",
           }}
         >
+          {/* Left — bio */}
           <div ref={refLeft} className="fade-up delay-1">
             <h2
               style={{
@@ -39,20 +47,40 @@ export default function About() {
               Building at the intersection of code &amp; infrastructure
             </h2>
             <p style={{ color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "1rem" }}>
-              I'm a developer with hands-on experience across the full stack —
-              from crafting React interfaces to engineering Spring Boot services.
-              My passion lies in DevOps: automating deployments, managing Linux
-              systems, and making software delivery faster and more reliable.
+              Computer Science undergraduate at Sri Sairam Institute of Technology,
+              Chennai (CGPA 8.44), with proven backend engineering skills. Built a
+              production-ready banking REST API using Java, Spring Boot, and MySQL.
             </p>
-            <p style={{ color: "var(--text-muted)", lineHeight: 1.8 }}>
+            <p style={{ color: "var(--text-muted)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
               Holding an{" "}
               <span style={{ color: "var(--accent)" }}>RHCSA certification</span>,
-              I'm deeply comfortable with Red Hat Enterprise Linux environments,
-              scripting, and system administration — skills I actively bring into
-              my development workflow.
+              I'm deeply comfortable with Linux environments, shell scripting, and
+              system administration — skills I actively bring into my development workflow.
             </p>
+
+            {/* Achievements */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {ACHIEVEMENTS.map(({ icon, text }) => (
+                <div
+                  key={text}
+                  style={{
+                    display:      "flex",
+                    alignItems:   "flex-start",
+                    gap:          "0.75rem",
+                    background:   "var(--accent-dim)",
+                    border:       "1px solid var(--accent-mid)",
+                    borderRadius: "var(--radius-md)",
+                    padding:      "0.75rem 1rem",
+                  }}
+                >
+                  <span style={{ fontSize: "1rem", marginTop: "1px" }}>{icon}</span>
+                  <span style={{ color: "var(--text-muted)", fontSize: "0.875rem", lineHeight: 1.6 }}>{text}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
+          {/* Right — highlight cards */}
           <div ref={refRight} className="fade-up delay-2" style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
             {HIGHLIGHTS.map(({ label, sub }) => (
               <div

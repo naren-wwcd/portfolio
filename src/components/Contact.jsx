@@ -1,76 +1,130 @@
-import { useState } from "react";
 import { useFadeUp } from "../hooks/useFadeUp";
 import "../styles/portfolio.css";
 
-const SOCIAL_LINKS = [
-  { label: "GitHub",   href: "https://github.com/naren-wwcd"         },
-  { label: "LinkedIn", href: "http://www.linkedin.com/in/narendran-d" },
-  { label: "Email",    href: "mailto:narenwwcd@gmail.com"             },
+const CONTACTS = [
+  {
+    label: "Email",
+    value: "narenwwcd@gmail.com",
+    href:  "mailto:narenwwcd@gmail.com",
+    icon:  "✉",
+  },
+  {
+    label: "Phone",
+    value: "+91 9444297878",
+    href:  "tel:+919444297878",
+    icon:  "📞",
+  },
+  {
+    label: "LinkedIn",
+    value: "linkedin.com/in/narendran-d",
+    href:  "http://www.linkedin.com/in/narendran-d",
+    icon:  "💼",
+  },
+  {
+    label: "GitHub",
+    value: "github.com/naren-wwcd",
+    href:  "https://github.com/naren-wwcd",
+    icon:  "⌥",
+  },
+  {
+    label: "Location",
+    value: "Chennai, Tamil Nadu",
+    href:  null,
+    icon:  "📍",
+  },
 ];
 
 export default function Contact() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const refLabel = useFadeUp();
-  const refCard  = useFadeUp();
-
-  const handleChange = (e) =>
-    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-
-  const handleSend = () => {
-    const { name, email, message } = form;
-    if (!name || !email || !message) {
-      alert("Please fill in all fields before sending.");
-      return;
-    }
-    const subject = encodeURIComponent(`Portfolio Contact from ${name}`);
-    const body    = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:narenwwcd@gmail.com?subject=${subject}&body=${body}`;
-  };
+  const refHead  = useFadeUp();
+  const refCards = useFadeUp();
 
   return (
     <section id="contact">
       <div className="section-inner" style={{ paddingBottom: "8rem" }}>
         <p ref={refLabel} className="section-label fade-up">04 — CONTACT</p>
 
-        <div
-          ref={refCard}
+        <h2
+          ref={refHead}
           className="fade-up delay-1"
           style={{
-            border: "1px solid var(--border)", borderRadius: "12px",
-            padding: "3rem", background: "var(--bg-card-hover)",
+            fontFamily:   "var(--font-display)",
+            fontSize:     "2rem",
+            color:        "var(--text-primary)",
+            fontWeight:   700,
+            marginBottom: "0.75rem",
           }}
         >
-          <h2 style={{ fontFamily: "var(--font-display)", fontSize: "2rem", color: "var(--text-primary)", fontWeight: 700, marginBottom: "0.75rem" }}>
-            Let's build something together
-          </h2>
-          <p style={{ color: "var(--text-muted)", lineHeight: 1.75, marginBottom: "2rem", maxWidth: "500px" }}>
-            Open to full-stack development roles, DevOps positions, and interesting projects. Drop a message and I'll get back to you.
-          </p>
+          Let's build something together
+        </h2>
+        <p
+          className="fade-up delay-1"
+          style={{
+            color:        "var(--text-muted)",
+            lineHeight:   1.75,
+            marginBottom: "2.5rem",
+            maxWidth:     "500px",
+          }}
+        >
+          Open to full-stack development roles, DevOps positions, and
+          interesting projects. Reach out through any of the channels below.
+        </p>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "1rem", maxWidth: "480px" }}>
-            <input className="form-input" name="name"    placeholder="Your Name"    value={form.name}    onChange={handleChange} />
-            <input className="form-input" name="email"   placeholder="Your Email"   value={form.email}   onChange={handleChange} type="email" />
-            <textarea className="form-input" name="message" placeholder="Your Message" value={form.message} onChange={handleChange} rows={4} style={{ resize: "vertical" }} />
-            <button className="btn-primary" onClick={handleSend} style={{ alignSelf: "flex-start" }}>
-              Send Message →
-            </button>
-          </div>
-
-          <div style={{ marginTop: "2.5rem", paddingTop: "2rem", borderTop: "1px solid var(--border)", display: "flex", gap: "2rem", flexWrap: "wrap" }}>
-            {SOCIAL_LINKS.map(({ label, href }) => (
-              <a
-                key={label}
-                href={href}
-                target={label !== "Email" ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                style={{ fontFamily: "var(--font-display)", fontSize: "0.875rem", color: "var(--text-muted)", textDecoration: "none", letterSpacing: "0.05em", transition: "color 0.2s" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-muted)")}
-              >
-                {label} ↗
-              </a>
-            ))}
-          </div>
+        <div
+          ref={refCards}
+          className="fade-up delay-2"
+          style={{
+            display:             "grid",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap:                 "1rem",
+            maxWidth:            "640px",
+          }}
+        >
+          {CONTACTS.map(({ label, value, href, icon }) => (
+            <div
+              key={label}
+              className="card"
+              style={{ padding: "1.4rem 1.6rem", display: "flex", alignItems: "center", gap: "1rem" }}
+            >
+              <span style={{ fontSize: "1.3rem", flexShrink: 0 }}>{icon}</span>
+              <div>
+                <div
+                  style={{
+                    fontFamily:   "var(--font-mono)",
+                    color:        "var(--accent)",
+                    fontSize:     "0.72rem",
+                    letterSpacing:"0.15em",
+                    textTransform:"uppercase",
+                    marginBottom: "0.2rem",
+                  }}
+                >
+                  {label}
+                </div>
+                {href ? (
+                  <a
+                    href={href}
+                    target={href.startsWith("http") ? "_blank" : undefined}
+                    rel="noopener noreferrer"
+                    style={{
+                      fontFamily:     "var(--font-body)",
+                      color:          "var(--text-primary)",
+                      fontSize:       "0.9rem",
+                      textDecoration: "none",
+                      transition:     "color 0.2s",
+                    }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                  >
+                    {value}
+                  </a>
+                ) : (
+                  <span style={{ fontFamily: "var(--font-body)", color: "var(--text-primary)", fontSize: "0.9rem" }}>
+                    {value}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
