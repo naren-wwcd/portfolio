@@ -1,0 +1,194 @@
+/* =============================================
+   PORTFOLIO.CSS — Global styles & CSS variables
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --bg:           #0A0F1E;
+  --bg-card:      rgba(10, 15, 30, 0.7);
+  --bg-card-hover:rgba(0, 212, 255, 0.03);
+  --border:       #1a2a4a;
+  --border-hover: #00D4FF;
+  --accent:       #00D4FF;
+  --accent-dim:   rgba(0, 212, 255, 0.08);
+  --accent-mid:   rgba(0, 212, 255, 0.15);
+  --text-primary: #F0F4FF;
+  --text-muted:   #8892A4;
+  --text-dark:    #1a3a5a;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Inter', sans-serif;
+  --font-mono:    monospace;
+  --radius-sm:    3px;
+  --radius-md:    6px;
+  --radius-lg:    10px;
+  --section-pad:  6rem 2.5rem;
+  --max-w:        900px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+}
+
+/* ── Dot-grid background ── */
+.dot-grid {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #1a2a4a 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.4;
+}
+
+/* ── Section wrapper ── */
+.section-inner {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: var(--section-pad);
+}
+
+/* ── Section label (01 — ABOUT etc.) ── */
+.section-label {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  margin-bottom: 1.25rem;
+  opacity: 0.7;
+  text-transform: uppercase;
+}
+
+/* ── Section heading ── */
+.section-heading {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+}
+
+/* ── Tag pill ── */
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-mid);
+}
+
+/* ── Skill badge (filled) ── */
+.skill-badge {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  background: var(--accent-dim);
+  color: var(--text-primary);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--accent-mid);
+}
+
+/* ── Card base ── */
+.card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--bg-card);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.08);
+}
+
+/* ── Buttons ── */
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+  padding: 0.75rem 1.8rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.2s;
+}
+.btn-primary:hover { opacity: 0.85; }
+
+.btn-outline {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 0.75rem 1.8rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: background 0.2s, color 0.2s;
+}
+.btn-outline:hover {
+  background: var(--accent-dim);
+}
+
+/* ── Input ── */
+.form-input {
+  background: rgba(26, 42, 74, 0.4);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.form-input:focus {
+  border-color: var(--accent);
+}
+.form-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Footer ── */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  color: var(--text-dark);
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Cursor blink ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
