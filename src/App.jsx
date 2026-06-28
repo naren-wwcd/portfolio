@@ -1,10 +1,11 @@
 import "./styles/portfolio.css";
-import Navbar   from "./components/Navbar";
-import Hero     from "./components/Hero";
-import About    from "./components/About";
-import Skills   from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact  from "./components/Contact";
+import Navbar      from "./components/Navbar";
+import Hero        from "./components/Hero";
+import About       from "./components/About";
+import Skills      from "./components/Skills";
+import Projects    from "./components/Projects";
+import Contact     from "./components/Contact";
+import ScrollUtils from "./components/ScrollUtils";
 
 export default function App() {
   return (
@@ -12,10 +13,13 @@ export default function App() {
       {/* Fixed ambient dot-grid background */}
       <div className="dot-grid" />
 
+      {/* Scroll progress bar + back to top button */}
+      <ScrollUtils />
+
       {/* Sticky nav */}
       <Navbar />
 
-      {/* Page content — all sections stacked */}
+      {/* Page content */}
       <main style={{ position: "relative", zIndex: 1 }}>
         <Hero />
         <About />

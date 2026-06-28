@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useFadeUp } from "../hooks/useFadeUp";
 import "../styles/portfolio.css";
 
 const TYPEWRITER_STRINGS = [
@@ -9,9 +10,9 @@ const TYPEWRITER_STRINGS = [
 ];
 
 function useTypewriter(strings, speed = 80, pause = 1800) {
-  const [text, setText]       = useState("");
-  const [strIdx, setStrIdx]   = useState(0);
-  const [charIdx, setCharIdx] = useState(0);
+  const [text, setText]         = useState("");
+  const [strIdx, setStrIdx]     = useState(0);
+  const [charIdx, setCharIdx]   = useState(0);
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
@@ -45,7 +46,12 @@ const scrollTo = (id) =>
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
 export default function Hero() {
-  const typed = useTypewriter(TYPEWRITER_STRINGS);
+  const typed   = useTypewriter(TYPEWRITER_STRINGS);
+  const refTag  = useFadeUp();
+  const refName = useFadeUp();
+  const refType = useFadeUp();
+  const refDesc = useFadeUp();
+  const refBtns = useFadeUp();
 
   return (
     <section
@@ -61,6 +67,8 @@ export default function Hero() {
       }}
     >
       <p
+        ref={refTag}
+        className="fade-up"
         style={{
           fontFamily:    "var(--font-display)",
           color:         "var(--accent)",
@@ -74,6 +82,8 @@ export default function Hero() {
       </p>
 
       <h1
+        ref={refName}
+        className="fade-up delay-1"
         style={{
           fontFamily:    "var(--font-display)",
           fontWeight:    800,
@@ -88,21 +98,17 @@ export default function Hero() {
       </h1>
 
       <div
+        ref={refType}
+        className="fade-up delay-2"
         style={{
-          display:       "flex",
-          alignItems:    "center",
-          gap:           "0.6rem",
-          marginBottom:  "1.8rem",
-          minHeight:     "2.5rem",
+          display:      "flex",
+          alignItems:   "center",
+          gap:          "0.6rem",
+          marginBottom: "1.8rem",
+          minHeight:    "2.5rem",
         }}
       >
-        <span
-          style={{
-            color:      "var(--accent)",
-            fontFamily: "var(--font-mono)",
-            fontSize:   "1.4rem",
-          }}
-        >
+        <span style={{ color: "var(--accent)", fontFamily: "var(--font-mono)", fontSize: "1.4rem" }}>
           &gt;
         </span>
         <span
@@ -114,15 +120,13 @@ export default function Hero() {
           }}
         >
           {typed}
-          <span
-            style={{ color: "var(--accent)", animation: "blink 1s step-end infinite" }}
-          >
-            _
-          </span>
+          <span style={{ color: "var(--accent)", animation: "blink 1s step-end infinite" }}>_</span>
         </span>
       </div>
 
       <p
+        ref={refDesc}
+        className="fade-up delay-3"
         style={{
           fontFamily:   "var(--font-body)",
           color:        "var(--text-muted)",
@@ -136,13 +140,26 @@ export default function Hero() {
         the gap between development and operations — one pipeline at a time.
       </p>
 
-      <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+      <div
+        ref={refBtns}
+        className="fade-up delay-4"
+        style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}
+      >
         <button className="btn-primary" onClick={() => scrollTo("projects")}>
           View Projects
         </button>
         <button className="btn-outline" onClick={() => scrollTo("contact")}>
           Contact Me
         </button>
+        {/* Resume download — place your resume.pdf in the public/ folder */}
+        <a
+          href="/resume.pdf"
+          download="Narendran_A_Resume.pdf"
+          className="btn-outline"
+          style={{ display: "flex", alignItems: "center", gap: "0.4rem" }}
+        >
+          ↓ Resume
+        </a>
       </div>
     </section>
   );
